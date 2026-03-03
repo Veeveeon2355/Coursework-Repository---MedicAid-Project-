@@ -20,29 +20,32 @@ This repository contains the full coursework submission for predicting Medicaid 
 - Query History and SQL Dashboard for (screenshots)
 
 ## Repository Structure
-
 project/
-├── config
-│   └── environment_2026-03-02_14-01-31
-         JSON
-├── data/
-│   └── samples/    
-         All other data samples from the project
-├── notebooks/
-│   └── Medicaid_Spending_Regression_Full_Pipeline.ipynb     
-├── Query_history and Databricks SQL Dashboards/
-Custom Performance Dashboard.lvdash Databricks SQL Dashboards, Query History Screenshots/
-       └── Custom Performance Dashboard.lvdash
-├── scripts   
-│   └── # run_pipeline.py
-        #!binbash
-├── tableau/
-│   └── MedicAid Regression.twbx                              
-├── tests
-│   └── # test_pipeline.py
-├── README.md                                              
-                                     
-
+├── config/                              Configuration files for Spark and Tableau
+│   ├── spark_config.yaml                Spark session and ML parameters
+│   └── tableau_config.json              Dashboard metadata and export settings
+├── data/                                Data samples and schemas
+│   └── schemas and samples/
+│       └── medicaid-provider-spending.parquet   Exported model metrics CSV (training times, RMSE, R², notes), main dataset csv
+├── notebooks/                           Core analysis pipeline (single consolidated notebook)
+│   └── Medicaid_Spending_Regression_Full_Pipeline.ipynb   Full pipeline with markdown sections
+├── query_history_and_dashboards/        Performance evidence from Databricks
+│   ├── Custom_Performance_Dashboard.lvdash   Databricks SQL dashboard JSON export
+│   └── query_history_screenshots/       Screenshots of Query Profile, Ganglia Metrics, and Query History
+│       ├── 01_data_ingestion_query_profile.png
+│       ├── 02_sampling_and_splitting.png
+│       ├── 03_pandas_conversion_sklearn.png
+│       ├── 04_vectorassembler_standardscaler.png
+│       ├── 05_model_training_linearregression.png
+│       └── 06_csv_export_tableau.png and other screenshots
+├── scripts/                             Utility scripts for environment and pipeline
+│   ├── setup_environment.sh             Bash script for local package installation
+│   └── run_pipeline.py                  Simple entry-point script (placeholder for orchestration)
+├── tableau/                             Tableau workbook for visualisation
+│   └── Medicaid_Regression.twbx         Packaged Tableau workbook with 4 dashboards
+├── tests/                               Basic unit test structure
+│   └── test_pipeline.py                 Minimal unittest example (placeholder)
+└── README.md                            Project overview, setup instructions, and links                                            
 ## How to run / reproduce..
 
 ### Prerequisites
@@ -79,12 +82,6 @@ View the interactive dashboards here:
 
 **(https://public.tableau.com/views/MedicAidRegression/Dashboard1?:language=en-US&:sid=&:display_count=n&:origin=viz_share_link)**
 
-## Databricks SQL Performance Board
-
-Custom dashboard summarizing training times, RMSE/R² and bottlenecks:  
-
-[[(https://dbc-b43580aa-7482.cloud.databricks.com/dashboardsv3/01f114b3f35510deaa51163b1065d7b0/published?o=7474644374456874)]]
-
 ## Important Note: Query History
 
 Due to **Databricks Serverless compute restrictions**, classic Spark UI tabs and event log configuration (spark.eventLog.enabled) are not available (results in CONFIG_NOT_AVAILABLE error).  
@@ -108,6 +105,12 @@ Instead, the following were used for performance analysis and optimization evide
 Not all cells display the "See performance" / Query Profile link after execution. The included screenshots cover the most important long-running and optimization-relevant cells.
 
 The SQL dashbords provide detailed model training visualizations, performance metrics, and bottlenecks — together with the screenshots above, this fully covers the optimization and execution analysis.
+
+## Databricks SQL Performance Board
+
+Custom dashboard summarizing training times, RMSE/R² and bottlenecks:  
+
+[[(https://dbc-b43580aa-7482.cloud.databricks.com/dashboardsv3/01f114b3f35510deaa51163b1065d7b0/published?o=7474644374456874)]]
 
 - **Sampling**: Full dataset (227M rows) not trainable locally → 5% sample used for feasibility.
 

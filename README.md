@@ -17,32 +17,31 @@ This repository contains the full coursework submission for predicting Medicaid 
 - Single notebook: full pipeline (ingestion → preprocessing → training → evaluation → export)
 - Tableau Public workbook: 4 dashboards (data quality, model performance, insights, scalability)
 - Custom Databricks SQL dashboard: model training bottlenecks and performance summary
-- Query History (screenshots)
+- Query History and SQL Dashboard for (screenshots)
 
 ## Repository Structure
 
 project/
-
-├── notebooks/
-
-│   └── Medicaid_Spending_Regression_Full_Pipeline.ipynb     
-
-├── tableau/
-
-│   └── MedicAid Regression.twbx                              
-
-├── Query_history
-
+├── config
+│   └── environment_2026-03-02_14-01-31
+         JSON
 ├── data/
-
-│   └── dashboard4_scalability.csv 
-
-│      └── samples/    
+│   └── samples/    
          All other data samples from the project
-
+├── notebooks/
+│   └── Medicaid_Spending_Regression_Full_Pipeline.ipynb     
+├── Query_history and Databricks SQL Dashboards/
+Custom Performance Dashboard.lvdash Databricks SQL Dashboards, Query History Screenshots/
+       └── Custom Performance Dashboard.lvdash
+├── scripts   
+│   └── # run_pipeline.py
+        #!binbash
+├── tableau/
+│   └── MedicAid Regression.twbx                              
+├── tests
+│   └── # test_pipeline.py
 ├── README.md                                              
-
-└── environment.yml                                       
+                                     
 
 ## How to run / reproduce..
 
